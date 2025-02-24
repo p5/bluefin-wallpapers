@@ -1,0 +1,3 @@
+[submodule "ublue-os-packages"]
+	path = ublue-os-packages
+	url = https://github.com/ublue-os/packages.git
