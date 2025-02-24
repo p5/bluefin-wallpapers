@@ -3,14 +3,17 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(dirname "${BASH_SOURCE[0]}")"
-SOURCE_DIR="${SCRIPT_DIR}/ublue-os-packages/packages/bluefin/wallpapers"
-OUTPUT_DIR="${SCRIPT_DIR}/raw/"
+SOURCE_DIR="${SCRIPT_DIR}/../ublue-os-packages/packages/bluefin/wallpapers"
+OUTPUT_DIR="${SCRIPT_DIR}/../raw/heic"
 
 # Create the output directory if it doesn't exist
 mkdir -p "$OUTPUT_DIR"
 
-# Loop through all JXL files in the current directory
-for file in $SOURCE_DIR/*.jxl; do
+# Loop through all JXL files in the source directory
+for file in "$SOURCE_DIR"/*.jxl; do
+    # Check if there are any JXL files
+    [ -e "$file" ] || { echo "No .jxl files found in $SOURCE_DIR"; exit 1; }
+
     # Get the base filename without the extension
     base_name=$(basename "$file" .jxl)
 
